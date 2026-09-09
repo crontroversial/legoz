@@ -1,5 +1,7 @@
 const buttons = document.querySelectorAll("button");
 const cartCount = document.querySelector("#cart-count");
+const cartItems = document.querySelector("#cart-items");
+const cartTotal = document.querySelector("#cart-total");
 
 let cart = [];
 
@@ -13,9 +15,12 @@ buttons.forEach(function(button) {
 
     cartCount.textContent = cart.length;
 
-    console.log(cart);
+    const newItem = document.createElement("li");
+    newItem.textContent = productName + " – 2,99 €";
+    cartItems.appendChild(newItem);
 
-    alert(productName + " wurde hinzugefügt!");
+    const total = cart.length * 2.99;
+    cartTotal.textContent = "Gesamt: " + total.toFixed(2) + " €";
 
   });
 });
