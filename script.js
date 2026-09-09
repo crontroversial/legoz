@@ -13,14 +13,40 @@ buttons.forEach(function(button) {
 
     cart.push(productName);
 
-    cartCount.textContent = cart.length;
-
-    const newItem = document.createElement("li");
-    newItem.textContent = productName + " – 2,99 €";
-    cartItems.appendChild(newItem);
-
-    const total = cart.length * 2.99;
-    cartTotal.textContent = "Gesamt: " + total.toFixed(2) + " €";
+    updateCart();
 
   });
 });
+
+function updateCart() {
+
+  cartItems.innerHTML = "";
+
+  cart.forEach(function(productName, index) {
+
+    const newItem = document.createElement("li");
+
+    newItem.textContent = productName + " – 2,99 € ";
+
+    const removeButton = document.createElement("button");
+    removeButton.textContent = "Entfernen";
+
+    removeButton.addEventListener("click", function() {
+
+      cart.splice(index, 1);
+
+      updateCart();
+
+    });
+
+    newItem.appendChild(removeButton);
+    cartItems.appendChild(newItem);
+
+  });
+
+  cartCount.textContent = cart.length;
+
+  const total = cart.length * 2.99;
+
+  cartTotal.textContent = "Gesamt: " + total.toFixed(2) + " €";
+}
