@@ -22,16 +22,39 @@ function updateCart() {
 
   cartItems.innerHTML = "";
 
-  cart.forEach(function(productName, index) {
+  const groupedCart = {};
+
+  cart.forEach(function(productName) {
+
+    if (groupedCart[productName]) {
+      groupedCart[productName]++;
+    } else {
+      groupedCart[productName] = 1;
+    }
+
+  });
+
+  Object.keys(groupedCart).forEach(function(productName) {
+
+    const quantity = groupedCart[productName];
+    const productTotal = quantity * 2.99;
 
     const newItem = document.createElement("li");
 
-    newItem.textContent = productName + " – 2,99 € ";
+    newItem.textContent =
+      productName +
+      " × " +
+      quantity +
+      " – " +
+      productTotal.toFixed(2) +
+      " € ";
 
     const removeButton = document.createElement("button");
     removeButton.textContent = "Entfernen";
 
     removeButton.addEventListener("click", function() {
+
+      const index = cart.indexOf(productName);
 
       cart.splice(index, 1);
 
