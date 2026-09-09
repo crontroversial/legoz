@@ -53,3 +53,34 @@ button {
   padding: 10px 20px;
   cursor: pointer;
 }
+#cart {
+  width: 800px;
+  margin: 20px auto 0;
+  text-align: right;
+  font-weight: bold;
+}
+
+#cart-box {
+  width: 740px;
+  margin: 0 auto 80px;
+  padding: 30px;
+  background-color: white;
+  border-radius: 20px;
+}
+
+#cart-box h2 {
+  margin-top: 0;
+}
+
+#cart-items {
+  padding-left: 20px;
+}
+
+#cart-items li {
+  margin-bottom: 10px;
+}
+
+#cart-total {
+  font-weight: bold;
+  margin-top: 25px;
+}
