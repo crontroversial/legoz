@@ -1,4 +1,4 @@
-const buttons = document.querySelectorAll("button");
+const buttons = document.querySelectorAll(".product button");
 const cartCount = document.querySelector("#cart-count");
 const cartItems = document.querySelector("#cart-items");
 const cartTotal = document.querySelector("#cart-total");
@@ -43,16 +43,14 @@ function updateCart() {
 
     newItem.textContent =
       productName +
-      " × " +
-      quantity +
       " – " +
       productTotal.toFixed(2) +
       " € ";
 
-    const removeButton = document.createElement("button");
-    removeButton.textContent = "Entfernen";
+    const minusButton = document.createElement("button");
+    minusButton.textContent = "−";
 
-    removeButton.addEventListener("click", function() {
+    minusButton.addEventListener("click", function() {
 
       const index = cart.indexOf(productName);
 
@@ -62,7 +60,24 @@ function updateCart() {
 
     });
 
-    newItem.appendChild(removeButton);
+    const quantityText = document.createElement("span");
+    quantityText.textContent = " " + quantity + " ";
+
+    const plusButton = document.createElement("button");
+    plusButton.textContent = "+";
+
+    plusButton.addEventListener("click", function() {
+
+      cart.push(productName);
+
+      updateCart();
+
+    });
+
+    newItem.appendChild(minusButton);
+    newItem.appendChild(quantityText);
+    newItem.appendChild(plusButton);
+
     cartItems.appendChild(newItem);
 
   });
